@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'src.supplier',
+    'src.car_showroom',
 ]
 
 MIDDLEWARE = [
