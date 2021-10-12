@@ -7,6 +7,8 @@ name = "pypi"
 django = "*"
 pytest-django = "*"
 pytest-cov = "*"
+psycopg2 = "*"
+django-countries = "*"
 
 [dev-packages]
 
