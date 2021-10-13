@@ -9,6 +9,10 @@ pytest-django = "*"
 pytest-cov = "*"
 psycopg2 = "*"
 django-countries = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+drf-yasg = "*"
+djoser = "*"
 
 [dev-packages]
 
