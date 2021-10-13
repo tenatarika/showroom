@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'src.supplier',
     'src.car_showroom',
+    'src.customer',
 ]
 
 MIDDLEWARE = [
