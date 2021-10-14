@@ -22,10 +22,7 @@ class GetPublicSupplierSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Supplier
-        exclude = (
-            "name",
-            "description",
-        )
+        fields = ("id", "name", "description")
 
 
 class GetPrivateSupplierSerializer(serializers.ModelSerializer):
