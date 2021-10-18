@@ -14,15 +14,4 @@ class GetCarsOfShowroom(serializers.ModelSerializer):
 
     class Meta:
         model = Car_showroom_Car
-        fields = ('count', 'discount', 'date', 'car', ) 
-
-
-
-    # count = models.IntegerField(default=1)
-    # discount = models.IntegerField(
-    #                       validators=[MinValueValidator(0),
-    #                                   MaxValueValidator(100)])
-    # date = models.DateTimeField(auto_now=True)
-    # car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE)
-    # сar_showroom = models.ForeignKey(Car_showroom, on_delete=models.CASCADE)
-    
+        fields = ('count', 'discount', 'date', 'car') 

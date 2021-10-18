@@ -21,6 +21,7 @@ class Customer(models.Model):
     sample = models.JSONField(blank=True, default=jsonfield_default_value)
     cars = models.ManyToManyField(Car, through='Purchase')
     country = CountryField(default=None, blank=True)
+    is_active = models.BooleanField(default=False)
 
     
     def __str__(self):
@@ -28,6 +29,7 @@ class Customer(models.Model):
 
 
 class Purchase(models.Model):
+    is_active = models.BooleanField(default=False)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE)
     supplier = models.ForeignKey(Customer, on_delete=models.CASCADE)
     car_showroom = models.ForeignKey(Car_showroom, on_delete=models.CASCADE)
