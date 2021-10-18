@@ -19,6 +19,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', include('src.supplier.urls')),
+    path('', include('src.car_showroom.urls')),
 
 
 

@@ -4,9 +4,8 @@ from src.supplier.models import Car
 from src.car_showroom.models import Car_showroom
 from src.tools.fields import DecimalRangeField
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.postgres.fields import IntegerRangeField
+
 
 # Create your models here.
 
