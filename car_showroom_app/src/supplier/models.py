@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import RegexValidator
 
 class Car(models.Model):
     """Car model
@@ -10,7 +10,12 @@ class Car(models.Model):
     width = models.IntegerField(blank=True)
     mileage = models.IntegerField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(
+        max_length=17,
+        unique=True,
+        validators=[
+            RegexValidator(regex="/^(?<wmi>[Y3-Y5\d]{3})(?<vds>[A-HJ-NPR-Z\d]{5})(?<check>[\dX])(?<vis>(?<year>[A-HJ-NPR-Z\d])(?<plant>[A-HJ-NPR-Z\d])(?<seq>[A-HJ-NPR-Z\d]{6}))$/")
+            ])
 
     def __str__(self):
         return self.name
