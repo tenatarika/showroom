@@ -14,7 +14,7 @@ class Car(models.Model):
         max_length=17,
         unique=True,
         validators=[
-            RegexValidator(regex="/^(?<wmi>[Y3-Y5\d]{3})(?<vds>[A-HJ-NPR-Z\d]{5})(?<check>[\dX])(?<vis>(?<year>[A-HJ-NPR-Z\d])(?<plant>[A-HJ-NPR-Z\d])(?<seq>[A-HJ-NPR-Z\d]{6}))$/")
+            RegexValidator(regex="^[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{2}\d{6}$")
             ])
 
     def __str__(self):

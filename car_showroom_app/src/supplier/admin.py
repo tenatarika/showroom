@@ -1,6 +1,8 @@
+from typing import Counter
 from django.contrib import admin
 from src.supplier.models import Car, Supplier, SupplierCar
-
+from django.urls import reverse
+from django.utils.http import  urlencode
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
@@ -8,7 +10,7 @@ class CarAdmin(admin.ModelAdmin):
 
 
 @admin.register(Supplier)
-class CarAdmin(admin.ModelAdmin):
+class SupplierAdmin(admin.ModelAdmin):
     list_display = ('name', 'balance')
 
 
