@@ -14,7 +14,7 @@ class CarShowroom(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, max_length=255)
     balance = models.DecimalField(max_digits=14, decimal_places=2)
-    cars = models.ManyToManyField(Car, through='Car_showroom_Car')
+    cars = models.ManyToManyField(Car, through='CarsOfShowroom')
     sortquery = models.JSONField(blank=True, default=jsonfield_default_value)
     country = CountryField(default=None, blank=True)
 
@@ -22,7 +22,7 @@ class CarShowroom(models.Model):
         return self.name
 
 
-class Car_showroom_Car(models.Model):
+class CarsOfShowroom(models.Model):
     """buying a car from a provider
     """
     count = models.IntegerField(default=1)

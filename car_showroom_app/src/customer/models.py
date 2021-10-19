@@ -1,7 +1,7 @@
 from django.db import models
 from django_countries.fields import CountryField
 from src.supplier.models import Car
-from src.car_showroom.models import Car_showroom
+from src.car_showroom.models import CarShowroom
 from src.tools.fields import DecimalRangeField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -30,7 +30,7 @@ class Customer(models.Model):
 class Purchase(models.Model):
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE)
     supplier = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    car_showroom = models.ForeignKey(Car_showroom, on_delete=models.CASCADE)
+    car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
     discount = models.IntegerField(
                           validators=[MinValueValidator(0),
                                       MaxValueValidator(100)])

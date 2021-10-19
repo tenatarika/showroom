@@ -23,13 +23,13 @@ class Supplier(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, max_length=255)
     balance = models.DecimalField(max_digits=14, decimal_places=2)
-    car = models.ManyToManyField(Car, through='Supplier_Car')
+    car = models.ManyToManyField(Car, through='SupplierCar')
 
     def __str__(self):
         return self.name
 
 
-class Supplier_Car(models.Model):
+class SupplierCar(models.Model):
     """Buying cars
     """
     count = models.IntegerField(default=1)
