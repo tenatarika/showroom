@@ -1,11 +1,9 @@
 from django.db import models
 
-# Create your models here.
 
 class Car(models.Model):
     """Car model
     """
-
 
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, max_length=255)
@@ -16,7 +14,6 @@ class Car(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class Supplier(models.Model):
@@ -36,7 +33,10 @@ class Supplier_Car(models.Model):
     """Buying cars
     """
     count = models.IntegerField(default=1)
-    discount = models.DecimalField(max_digits =10, decimal_places=2, default=0)
+    discount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0)
     date = models.DateTimeField(auto_now=True)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
