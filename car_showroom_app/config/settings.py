@@ -83,9 +83,9 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'showroom_db',
+        'NAME': 'db_showroomManage',
 
-        'USER': 'user_carshowroom',
+        'USER': 'showroomdb_user',
 
         'PASSWORD': '',
 
