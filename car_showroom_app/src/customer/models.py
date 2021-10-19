@@ -2,12 +2,10 @@ from django.db import models
 from django_countries.fields import CountryField
 from src.supplier.models import Car
 from src.car_showroom.models import CarShowroom
+from src.car_showroom.models import jsonfield_default_value
 from src.tools.fields import DecimalRangeField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-
-def jsonfield_default_value():  # This is a callable
-    return [0, 0]
 
 
 class Customer(models.Model):
