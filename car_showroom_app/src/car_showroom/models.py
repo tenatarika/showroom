@@ -12,7 +12,7 @@ def jsonfield_default_value():  # This is a callable
 
 class CarShowroom(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(blank=True, max_length=255)
+    description = models.TextField(blank=True)
     balance = models.DecimalField(max_digits=14, decimal_places=2)
     cars = models.ManyToManyField(Car, through='CarsOfShowroom')
     sortquery = models.JSONField(blank=True, default=jsonfield_default_value)
