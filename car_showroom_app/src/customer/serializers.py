@@ -8,9 +8,22 @@ class GetCustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = (
             "name",
+            "birthday",
+            "country",
+            "phone",
+        )
+
+
+class GetPrivateCustomerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Customer
+        fields = (
+            "name",
+            "balance",
+            "phone",
             "description",
-            "width",
-            "mileage",
-            "price",
-            "vin",
+            "sample",
+            "country",
+            "is_active",
         )

@@ -14,7 +14,7 @@ class Car(models.Model):
         max_length=17,
         unique=True,
         validators=[
-            RegexValidator(regex="^[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{2}\d{6}$")
+            RegexValidator(regex="^[A-HJ-NPR-Za-hj-npr-z\d]{8}")
             ])
 
     def __str__(self):
