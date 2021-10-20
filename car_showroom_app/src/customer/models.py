@@ -7,7 +7,6 @@ from src.tools.fields import DecimalRangeField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-
 class Customer(models.Model):
     name = models.CharField(max_length=50)
     birthday = models.DateField(blank=True, null=True)
