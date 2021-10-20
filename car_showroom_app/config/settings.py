@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
 
     'rest_framework',
     'rest_framework_simplejwt',
@@ -91,9 +92,9 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'showroom_db',
+        'NAME': 'db_showroomManage',
 
-        'USER': 'user_carshowroom',
+        'USER': 'showroomdb_user',
 
         'PASSWORD': '',
 
