@@ -1,6 +1,5 @@
 from rest_framework import serializers
-
-from .models import Car, Supplier, Supplier_Car
+from .models import Car, Supplier
 
 
 class GetCarSerializer(serializers.ModelSerializer):
@@ -16,21 +15,21 @@ class GetCarSerializer(serializers.ModelSerializer):
             "vin",
         )
 
+
 class ListCarSerializer(serializers.ModelSerializer):
     """ list of posts"""
-    
     user = serializers.ReadOnlyField(source='user.username')
-    
+
     class Meta:
         model = Car
-        fields = ("name",
+        fields = (
+            "name",
             "description",
             "width",
             "mileage",
             "price",
             "vin",
-        )     
-
+        )
 
 
 class GetPublicSupplierSerializer(serializers.ModelSerializer):
@@ -50,5 +49,3 @@ class GetSupplierSerializer(serializers.ModelSerializer):
             "balance",
             "car",
         )
-
-  

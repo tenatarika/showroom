@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Car_showroom, Car_showroom_Car
+from .models import CarShowroom, CarsOfShowroom
 
 
 class GetPublicShowroom(serializers.ModelSerializer):
 
     class Meta:
-        model = Car_showroom
+        model = CarShowroom
 
         fields = ('name', 'description', 'country')
 
@@ -13,5 +13,5 @@ class GetPublicShowroom(serializers.ModelSerializer):
 class GetCarsOfShowroom(serializers.ModelSerializer):
 
     class Meta:
-        model = Car_showroom_Car
-        fields = ('count', 'discount', 'date', 'car') 
+        model = CarsOfShowroom
+        fields = ('count', 'discount', 'date', 'car')

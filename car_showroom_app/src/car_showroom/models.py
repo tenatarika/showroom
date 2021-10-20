@@ -7,7 +7,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 def jsonfield_default_value():  # This is a callable
-    return [{'name':'None'}, {'mileage':0}, {'width':0}, {'price':0}]
+    return [{'name': 'None'}, {'mileage': 0}, {'width': 0}, {'price': 0}]
 
 
 class CarShowroom(models.Model):

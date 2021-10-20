@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
 from .serializers import GetCarSerializer, GetPublicSupplierSerializer, GetSupplierSerializer
@@ -19,9 +18,7 @@ class CarPublicView(ModelViewSet):
     permission_classes = [permissions.AllowAny]
 
 
-
 class SupplierView(ModelViewSet):
     queryset = Supplier.objects.all()
     serializer_class = GetSupplierSerializer
     permission_classes = [permissions.IsAuthenticated]
-    
