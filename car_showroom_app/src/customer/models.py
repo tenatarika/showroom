@@ -24,11 +24,14 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ("name", "balance", "country")
+
 
 class Purchase(models.Model):
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE)
     supplier = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
+    car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE, blank=True)
     discount = models.IntegerField(
                           validators=[MinValueValidator(0),
                                       MaxValueValidator(100)])

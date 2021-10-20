@@ -9,6 +9,7 @@ pytest-django = "*"
 pytest-cov = "*"
 psycopg2 = "*"
 django-countries = "*"
+django-filter = "*"
 
 [dev-packages]
 

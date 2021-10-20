@@ -11,7 +11,12 @@ class CarAdmin(admin.ModelAdmin):
 
 @admin.register(Supplier)
 class SupplierAdmin(admin.ModelAdmin):
-    list_display = ('name', 'balance')
+    list_display = ('name', 'balance', 'show_cars')
+
+    def show_cars(self, obj):
+        result = SupplierCar.objects.all().values('count').last()
+        return result.get('count')
+    show_cars.short_description = "Amount cars"
 
 
 @admin.register(SupplierCar)
