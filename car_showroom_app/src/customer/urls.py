@@ -6,4 +6,6 @@ urlpatterns = [
         {'get': 'retrieve'})),
     path('customer/me/<int:pk>/', views.CustomerPrivateView.as_view(
         {'get': 'retrieve', 'put': 'update'})),
+    path('customer/me/purchase/<int:pk>/', views.PurchaseView.as_view(
+        {'get': 'retrieve', 'put': 'update'})),
 ]

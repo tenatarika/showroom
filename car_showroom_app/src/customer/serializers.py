@@ -22,8 +22,19 @@ class GetPrivateCustomerSerializer(serializers.ModelSerializer):
             "name",
             "balance",
             "phone",
-            "description",
             "sample",
             "country",
             "is_active",
+        )
+
+
+class GetPurchaseSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Purchase
+        fields = (
+            'car',
+            'supplier'
+            'car_showroom'
+            'discount'
         )
