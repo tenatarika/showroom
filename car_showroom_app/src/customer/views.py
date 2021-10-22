@@ -7,13 +7,13 @@ from .models import Customer, Purchase
 class CustomerPublicView(ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = GetCustomerSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = (permissions.AllowAny,)
 
 
 class CustomerPrivateView(ModelViewSet):
-    # queryset = Customer.objects.all()
+
     serializer_class = GetPrivateCustomerSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
         return Customer.objects.filter(id=self.request.user.id)
@@ -22,4 +22,4 @@ class CustomerPrivateView(ModelViewSet):
 class PurchaseView(ModelViewSet):
     queryset = Purchase.objects.all()
     serializer_class = GetPurchaseSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.IsAuthenticated,)

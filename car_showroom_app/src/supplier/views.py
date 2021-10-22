@@ -9,16 +9,16 @@ class SupplierPublicView(ModelViewSet):
 
     queryset = Supplier.objects.all()
     serializer_class = GetPublicSupplierSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = (permissions.AllowAny,)
 
 
 class CarPublicView(ModelViewSet):
     queryset = Car.objects.all()
     serializer_class = GetCarSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = (permissions.AllowAny,)
 
 
 class SupplierView(ModelViewSet):
     queryset = Supplier.objects.all()
     serializer_class = GetSupplierSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.IsAuthenticated,)

@@ -7,10 +7,10 @@ from .models import CarShowroom, CarsOfShowroom
 class ShowroomPublicView(ModelViewSet):
     queryset = CarShowroom.objects.all()
     serializer_class = GetPublicShowroom
-    permission_classes = [permissions.AllowAny]
+    permission_classes = (permissions.AllowAny,)
 
 
 class ShowroomView(ModelViewSet):
     queryset = CarsOfShowroom.objects.all()
     serializer_class = GetCarsOfShowroom
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.IsAuthenticated,)
