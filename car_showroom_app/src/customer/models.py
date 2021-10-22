@@ -4,13 +4,18 @@ from src.supplier.models import Car
 from src.car_showroom.models import CarShowroom
 from src.car_showroom.models import jsonfield_default_value
 from src.tools.fields import DecimalRangeField
-from django.core.validators import MaxValueValidator, MinValueValidator
-
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 
 class Customer(models.Model):
     name = models.CharField(max_length=50)
     birthday = models.DateField(blank=True, null=True)
-    phone = models.CharField(max_length=14)
+    phone = models.CharField(
+        max_length=14,
+        validators=[
+        RegexValidator(regex="^\+375 \((17|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$")
+    ])
+
+
     balance = DecimalRangeField(
         null=True,
         min_value=0, max_value=9999999,

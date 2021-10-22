@@ -1,12 +1,11 @@
-from typing import Counter
+
 from django.contrib import admin
 from src.supplier.models import Car, Supplier, SupplierCar
-from django.urls import reverse
-from django.utils.http import  urlencode
+
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('name', 'width', 'mileage', 'price', 'vin')
+    list_display = ('name', 'width', 'mileage', 'price', 'vin', 'year', 'color')
 
 
 @admin.register(Supplier)
