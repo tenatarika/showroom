@@ -9,16 +9,14 @@ pytest-django = "*"
 pytest-cov = "*"
 psycopg2 = "*"
 django-countries = "*"
-<<<<<<< HEAD
 djangorestframework = "*"
 djangorestframework-simplejwt = "4.8.0"
 drf-yasg = "*"
 djoser = "*"
 pyjwt = "==2.1.0"
 django-debug-toolbar = "*"
-=======
 django-filter = "*"
->>>>>>> models
+celery = "*"
 
 [dev-packages]
 
