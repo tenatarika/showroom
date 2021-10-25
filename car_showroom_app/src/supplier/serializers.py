@@ -13,6 +13,8 @@ class GetCarSerializer(serializers.ModelSerializer):
             "mileage",
             "price",
             "vin",
+            "year",
+            "color",
         )
 
 
@@ -29,6 +31,8 @@ class ListCarSerializer(serializers.ModelSerializer):
             "mileage",
             "price",
             "vin",
+            "year",
+            "color",
         )
 
 
@@ -36,7 +40,7 @@ class GetPublicSupplierSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Supplier
-        fields = ("id", "name", "description")
+        fields = ("id", "name", "description",)
 
 
 class GetSupplierSerializer(serializers.ModelSerializer):
@@ -47,5 +51,5 @@ class GetSupplierSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "balance",
-            "car",
+            "cars",
         )
