@@ -37,7 +37,7 @@ class Purchase(models.Model):
     is_active = models.BooleanField(default=False)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE)
     supplier = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE, blank=True)
+    showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE, blank=True)
     discount = models.IntegerField(
                           validators=[MinValueValidator(0),
                                       MaxValueValidator(100)])

@@ -32,4 +32,4 @@ class CarsOfShowroom(models.Model):
                                       MaxValueValidator(100)])
     date = models.DateTimeField(auto_now=True)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE)
-    сar_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
+    showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
