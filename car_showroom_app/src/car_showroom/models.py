@@ -5,12 +5,14 @@ from django_countries.fields import CountryField
 from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
+from src.tools.fields import CreatedAt, UpdatedAt, SoftDelete
+
 
 def jsonfield_default_value():  # This is a callable
-    return [{'name':'None'}, {'mileage':0}, {'width':0}, {'price':0}]
+    return [{'name': 'None'}, {'mileage': 0}, {'width': 0}, {'price': 0}]
 
 
-class CarShowroom(models.Model):
+class CarShowroom(CreatedAt, UpdatedAt, SoftDelete):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     balance = models.DecimalField(max_digits=14, decimal_places=2)
@@ -22,7 +24,7 @@ class CarShowroom(models.Model):
         return self.name
 
 
-class CarsOfShowroom(models.Model):
+class CarsOfShowroom(CreatedAt, UpdatedAt, SoftDelete):
     """buying a car from a provider
     """
     count = models.IntegerField(default=1)
@@ -30,5 +32,9 @@ class CarsOfShowroom(models.Model):
                           validators=[MinValueValidator(0),
                                       MaxValueValidator(100)])
     date = models.DateTimeField(auto_now=True)
-    car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE)
-    сar_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
+                            related_name='cars_of_showroom', related_query_name='car_of_showroom',
+                            null=True)
+    сar_showroom = models.ForeignKey(CarShowroom, on_delete=models.SET_NULL,
+                                     related_name='showrooms', related_query_name='showroom',
+                                     null=True, blank=True)
