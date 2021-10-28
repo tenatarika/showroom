@@ -5,7 +5,7 @@ from src.supplier.models import Car, Supplier, SupplierCar
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('name', 'width', 'mileage', 'price', 'vin', 'year', 'color')
+    list_display = ('name', 'width', 'mileage', 'price', 'vin', 'year', 'color', 'added_date',)
 
 
 @admin.register(Supplier)
