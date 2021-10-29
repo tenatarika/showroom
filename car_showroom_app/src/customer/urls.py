@@ -1,11 +1,8 @@
-from django.urls import  path
-from . import views
+from rest_framework import routers
+from . import services
 
-urlpatterns = [
-    path('<int:pk>/', views.CustomerPublicView.as_view(
-        {'get': 'retrieve'})),
-    path('me/<int:pk>/', views.CustomerPrivateView.as_view(
-        {'get': 'retrieve', 'put': 'update',  'delete': 'destroy'})),
-    path('me/purchase/<int:pk>/', views.PurchaseView.as_view(
-        {'get': 'retrieve', 'put': 'update'})),
-]
+
+router = routers.DefaultRouter()
+router.register('', services.CustomerPrivateView, 'Customer')
+router.register('purchase', services.PurchaseView, 'Purchase')
+urlpatterns = router.urls

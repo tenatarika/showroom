@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import Car, Supplier
+from .models import Car, Supplier, SupplierCar
+
+
+class SupplierPurchasesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SupplierCar
+        fields = '__all__'
 
 
 class GetCarSerializer(serializers.ModelSerializer):
@@ -19,7 +25,7 @@ class GetCarSerializer(serializers.ModelSerializer):
 
 
 class ListCarSerializer(serializers.ModelSerializer):
-    """ list of posts"""
+    """ list of cars"""
     user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:

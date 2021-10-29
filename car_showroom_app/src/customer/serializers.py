@@ -35,6 +35,6 @@ class GetPurchaseSerializer(serializers.ModelSerializer):
         fields = (
             'car',
             'supplier',
-            'showroom',
+            'car_showroom',
             'discount',
         )
