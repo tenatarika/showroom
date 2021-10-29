@@ -1,11 +1,9 @@
-from django.urls import  path
-from . import views
+from rest_framework import routers
+from . import services
 
-urlpatterns = [
-    path('supplier/<int:pk>/', views.SupplierPublicView.as_view(
-        {'get': 'retrieve'})),
-    path('car/<int:pk>/', views.CarPublicView.as_view(
-        {'get': 'retrieve'})),
-    path('supplier/me/<int:pk>/', views.SupplierView.as_view(
-        {'get': 'retrieve', 'put': 'update'})),
-]
+
+router = routers.DefaultRouter()
+router.register('car', services.CarPublicView, 'Car')
+router.register('supplier', services.SupplierPublicView, 'Supplier')
+router.register('supplier-me', services.SupplierView, 'SupplierMe')
+urlpatterns = router.urls
