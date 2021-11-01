@@ -14,7 +14,11 @@ class SupplierAdmin(admin.ModelAdmin):
 
     def show_cars(self, obj):
         result = SupplierCar.objects.all().values('count').last()
-        return result.get('count')
+        try:
+            return result.get('count')
+        except AttributeError:
+            return None
+
     show_cars.short_description = "Amount cars"
 
 

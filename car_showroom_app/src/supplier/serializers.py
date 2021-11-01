@@ -8,6 +8,7 @@ class SupplierPurchasesSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class GetCarSerializer(serializers.ModelSerializer):
 
     class Meta:
