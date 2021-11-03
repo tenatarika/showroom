@@ -20,9 +20,9 @@ class Customer(CreatedAt, UpdatedAt, SoftDelete):
     gender = models.CharField(choices=Gender.choices, default=Gender.MALE, max_length=10)
     birthday = models.DateField(blank=True, null=True)
     phone = models.CharField(
-        max_length=14,
+        max_length=30,
         validators=(
-            RegexValidator(regex="^\+375 \((17|29|33|44)\) [0-9]{3}[0-9]{2}-[0-9]{2}$"),
+            RegexValidator(regex="^\+375(17|29|33|44)[0-9]{3}[0-9]{2}[0-9]{2}$"),
         ))
 
     balance = DecimalRangeField(
