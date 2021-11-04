@@ -2,8 +2,10 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework import permissions
 from django_filters import rest_framework as filters
-from .serializers import GetCustomerSerializer, GetPrivateCustomerSerializer, GetPurchaseSerializer
-from .models import Customer, Purchase
+
+from src.customer.models import Customer, Purchase
+from src.customer.serializers import GetCustomerSerializer, GetPrivateCustomerSerializer
+from src.customer.serializers import GetPurchaseSerializer
 
 
 class CustomerPublicView(ModelViewSet):
@@ -22,7 +24,7 @@ class CustomerPrivateView(ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     filter_backends = (filters.DjangoFilterBackend, SearchFilter, OrderingFilter,)
     filter_fields = ('name', 'gender', 'supplier', 'birthday', 'phone',)
-    search_fields = ('sample', 'country', 'car', 'name', 'birthday','phone',)
+    search_fields = ('sample', 'country', 'car', 'name', 'birthday', 'phone',)
     ordering_fields = ('sample', 'country', 'birthday', 'name', 'phone',)
 
 
