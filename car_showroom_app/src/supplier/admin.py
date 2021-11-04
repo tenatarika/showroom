@@ -18,7 +18,6 @@ class SupplierAdmin(admin.ModelAdmin):
             return result.get('count')
         except AttributeError:
             return None
-
     show_cars.short_description = "Amount cars"
 
 

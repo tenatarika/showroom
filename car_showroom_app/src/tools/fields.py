@@ -2,7 +2,6 @@ from django.db import models
 
 
 class CreatedAt(models.Model):
-    is_available = models.BooleanField(default=True)
     added_date = models.DateTimeField(auto_now=True)
 
     class Meta:

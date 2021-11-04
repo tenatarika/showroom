@@ -1,29 +1,35 @@
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models
 from django_countries.fields import CountryField
-from src.supplier.models import Car
+
 from src.car_showroom.models import CarShowroom
 from src.car_showroom.models import jsonfield_default_value
-from src.tools.fields import DecimalRangeField
-from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
-
-
+from src.core.customer.gender import Gender
+from src.supplier.models import Car
 from src.tools.fields import CreatedAt, UpdatedAt, SoftDelete
+from src.tools.fields import DecimalRangeField
+
+
+class Location(CreatedAt, UpdatedAt, SoftDelete):
+    country = CountryField(default=None, blank=True, null=True)
+    city = models.CharField(default=None, max_length=200, blank=True, null=True)
+    street = models.CharField(default=None, max_length=200, blank=True, null=True)
+    houseNum = models.PositiveIntegerField(default=None, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.country}, {self.city}, {self.street}, {self.houseNum}'
 
 
 class Customer(CreatedAt, UpdatedAt, SoftDelete):
-
-    class Gender(models.TextChoices):
-        MALE = "Male"
-        FEMALE = "Female"
-
     name = models.CharField(max_length=50)
-    gender = models.CharField(choices=Gender.choices, default=Gender.MALE, max_length=10)
+    gender = models.CharField(choices=Gender.choices(), default="MALE", max_length=50)
     birthday = models.DateField(blank=True, null=True)
     phone = models.CharField(
-        max_length=30,
+        max_length=40,
         validators=(
             RegexValidator(regex="^\+375(17|29|33|44)[0-9]{3}[0-9]{2}[0-9]{2}$"),
-        ))
+        )
+    )
 
     balance = DecimalRangeField(
         null=True,
@@ -32,13 +38,13 @@ class Customer(CreatedAt, UpdatedAt, SoftDelete):
     )
     sample = models.JSONField(blank=True, default=jsonfield_default_value)
     cars = models.ManyToManyField(Car, through='Purchase')
-    country = CountryField(default=None, blank=True)
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = ("name", "balance", "country")
+        ordering = ("name", "balance",)
 
 
 class Purchase(CreatedAt, UpdatedAt, SoftDelete):
@@ -54,3 +60,4 @@ class Purchase(CreatedAt, UpdatedAt, SoftDelete):
     discount = models.IntegerField(
         validators=(MinValueValidator(0),
                     MaxValueValidator(100),))
+
