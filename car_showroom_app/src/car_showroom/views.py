@@ -1,7 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
-from .serializers import GetPublicShowroom, GetCarsOfShowroom
-from .models import CarShowroom, CarsOfShowroom
+
+from src.car_showroom.models import CarShowroom, CarsOfShowroom
+from src.car_showroom.serializers import GetPublicShowroom, GetCarsOfShowroom
 
 
 class ShowroomPublicView(ModelViewSet):
@@ -14,4 +15,3 @@ class ShowroomView(ModelViewSet):
     queryset = CarsOfShowroom.objects.all()
     serializer_class = GetCarsOfShowroom
     permission_classes = (permissions.IsAuthenticated,)
-
