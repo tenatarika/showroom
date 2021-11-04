@@ -1,9 +1,11 @@
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework import permissions
-from .serializers import GetCarSerializer, GetPublicSupplierSerializer, GetSupplierSerializer, SupplierPurchasesSerializer
-from .models import Supplier, Car, SupplierCar
 from django_filters import rest_framework as filters
+
+from src.supplier.models import SupplierCar, Supplier, Car
+from src.supplier.serializers import SupplierPurchasesSerializer, GetPublicSupplierSerializer
+from src.supplier.serializers import GetSupplierSerializer, GetCarSerializer
 
 
 class SupplierPurchasesView(ModelViewSet):
@@ -50,4 +52,3 @@ class SupplierView(ModelViewSet):
     queryset = Supplier.objects.all()
     serializer_class = GetSupplierSerializer
     permission_classes = (permissions.IsAuthenticated,)
-

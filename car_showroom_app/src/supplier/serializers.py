@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import Car, Supplier, SupplierCar
+
+from src.supplier.models import SupplierCar, Car, Supplier
 
 
 class SupplierPurchasesSerializer(serializers.ModelSerializer):
     class Meta:
         model = SupplierCar
         fields = '__all__'
-
 
 
 class GetCarSerializer(serializers.ModelSerializer):
