@@ -6,7 +6,7 @@ from src.car_showroom.models import CarShowroom, CarsOfShowroom
 
 @admin.register(CarShowroom)
 class ShowroomAdmin(admin.ModelAdmin):
-    list_display = ("name", "balance", "sortquery", "country")
+    list_display = ("name", "balance", "sortquery", "location",)
 
 
 @admin.register(CarsOfShowroom)

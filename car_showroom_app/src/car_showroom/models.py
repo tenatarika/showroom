@@ -1,10 +1,7 @@
+from src.tools.fields import DecimalRangeField
 from django.db import models
-
 from src.supplier.models import Car
-from django_countries.fields import CountryField
 from django.core.validators import MaxValueValidator, MinValueValidator
-# Create your models here.
-
 from src.tools.fields import CreatedAt, UpdatedAt, SoftDelete
 
 
@@ -15,21 +12,24 @@ def jsonfield_default_value():  # This is a callable
 class CarShowroom(CreatedAt, UpdatedAt, SoftDelete):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    balance = models.DecimalField(max_digits=14, decimal_places=2)
+    balance = DecimalRangeField(
+        null=True,
+        min_value=0, max_value=9999999,
+        decimal_places=2, max_digits=10
+    )
     cars = models.ManyToManyField(Car, through='CarsOfShowroom')
     sortquery = models.JSONField(blank=True, default=jsonfield_default_value)
-    country = CountryField(default=None, blank=True)
+    location = models.ForeignKey('customer.Location', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
 
 
 class CarsOfShowroom(CreatedAt, UpdatedAt, SoftDelete):
-    """buying a car from a provider
-    """
+    """buying a car from a provider"""
     count = models.IntegerField(default=1)
     discount = models.IntegerField(
-                          validators=[MinValueValidator(0),
+                          validators=[MinValueValidator(1),
                                       MaxValueValidator(100)])
     date = models.DateTimeField(auto_now=True)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
