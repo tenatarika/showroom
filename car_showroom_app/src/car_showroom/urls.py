@@ -1,9 +1,8 @@
 from rest_framework import routers
-from . import services
-
+from . import  views
 
 router = routers.DefaultRouter()
-router.register('', services.ShowroomPublicView, 'CarShowroom')
-router.register('get_cars', services.ShowroomView, 'CarsOfShowroom')
+router.register('', views.ShowroomPublicView, 'CarShowroom')
+router.register('get_cars', views.ShowroomView, 'CarsOfShowroom')
 urlpatterns = router.urls
 

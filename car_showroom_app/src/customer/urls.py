@@ -1,8 +1,8 @@
 from rest_framework import routers
-from . import services
+from . import views
 
 
 router = routers.DefaultRouter()
-router.register('', services.CustomerPrivateView, 'Customer')
-router.register('purchase', services.PurchaseView, 'Purchase')
+router.register('', views.CustomerPrivateView, 'Customer')
+router.register('purchase', views.PurchaseView, 'Purchase')
 urlpatterns = router.urls
