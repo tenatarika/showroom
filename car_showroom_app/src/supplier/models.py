@@ -62,7 +62,7 @@ class SupplierCar(CreatedAt, UpdatedAt, SoftDelete):
         max_value=100,
     )
     date = models.DateTimeField(auto_now=True)
-    car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
+    car = models.ForeignKey(Car, to_field='vin', on_delete=models.CASCADE,
                             related_name='suppliers', related_query_name='supplier',
                             null=True)
     supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL,

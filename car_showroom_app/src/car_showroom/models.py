@@ -31,7 +31,6 @@ class CarsOfShowroom(CreatedAt, UpdatedAt, SoftDelete):
     discount = models.IntegerField(
                           validators=[MinValueValidator(1),
                                       MaxValueValidator(100)])
-    date = models.DateTimeField(auto_now=True)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
                             related_name='cars_of_showroom', related_query_name='car_of_showroom',
                             null=True)

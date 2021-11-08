@@ -14,10 +14,10 @@ class Location(CreatedAt, UpdatedAt, SoftDelete):
     country = CountryField(default=None, blank=True, null=True)
     city = models.CharField(default=None, max_length=200, blank=True, null=True)
     street = models.CharField(default=None, max_length=200, blank=True, null=True)
-    houseNum = models.PositiveIntegerField(default=None, blank=True, null=True)
+    house_num = models.PositiveIntegerField(default=None, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.country}, {self.city}, {self.street}, {self.houseNum}'
+        return f'{self.country}, {self.city}, {self.street}, {self.house_num}'
 
 
 class Customer(CreatedAt, UpdatedAt, SoftDelete):
@@ -60,4 +60,3 @@ class Purchase(CreatedAt, UpdatedAt, SoftDelete):
     discount = models.IntegerField(
         validators=(MinValueValidator(0),
                     MaxValueValidator(100),))
-
