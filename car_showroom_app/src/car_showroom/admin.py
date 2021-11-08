@@ -12,3 +12,4 @@ class ShowroomAdmin(admin.ModelAdmin):
 @admin.register(CarsOfShowroom)
 class CarsOfShowroomAdmin(admin.ModelAdmin):
     list_display = ("count", "discount", "date", "car", "сar_showroom")
+a
