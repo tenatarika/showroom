@@ -9,7 +9,14 @@ pytest-django = "*"
 pytest-cov = "*"
 psycopg2 = "*"
 django-countries = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "4.8.0"
+drf-yasg = "*"
+djoser = "*"
+pyjwt = "==2.1.0"
+django-debug-toolbar = "*"
 django-filter = "*"
+celery = "*"
 
 [dev-packages]
 
