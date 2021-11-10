@@ -4,9 +4,9 @@ from django_countries.fields import CountryField
 
 from src.car_showroom.models import CarShowroom
 from src.car_showroom.models import jsonfield_default_value
-from src.core.customer.gender import Gender
+from src.core.enums.customer import Gender
 from src.supplier.models import Car
-from src.tools.fields import CreatedAt, UpdatedAt, SoftDelete
+from src.tools.abstract_models import CreatedAt, UpdatedAt, SoftDelete
 from src.tools.fields import DecimalRangeField
 
 
@@ -22,7 +22,7 @@ class Location(CreatedAt, UpdatedAt, SoftDelete):
 
 class Customer(CreatedAt, UpdatedAt, SoftDelete):
     name = models.CharField(max_length=50)
-    gender = models.CharField(choices=Gender.choices(), default="MALE", max_length=50)
+    gender = models.CharField(choices=Gender.choices(), default="MALE", max_length=7)
     birthday = models.DateField(blank=True, null=True)
     phone = models.CharField(
         max_length=40,
@@ -48,12 +48,11 @@ class Customer(CreatedAt, UpdatedAt, SoftDelete):
 
 
 class Purchase(CreatedAt, UpdatedAt, SoftDelete):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
                             related_name='cars', related_query_name='car',
                             null=True, blank=True)
-    supplier = models.ForeignKey(Customer, on_delete=models.SET_NULL,
-                                 related_name='suppliers', related_query_name='supplier',
-                                 null=True, blank=True)
+
     car_showroom = models.ForeignKey(CarShowroom, on_delete=models.SET_NULL,
                                      related_name='carShowrooms', related_query_name='carShowroom',
                                      null=True, blank=True)
