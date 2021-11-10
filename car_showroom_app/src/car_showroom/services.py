@@ -10,7 +10,7 @@ def buy_cars() -> bool:
         sample = showroom.sortquery
         suppliers = SupplierCar.objects.filter(car__name=sample[0].get('name'))
         for supplier in suppliers:
-            if showroom.balance > suppliers[0].car.price:
+            if showroom.balance >= suppliers[0].car.price:
                 # print(showroom.balance, suppliers[0].supplier.balance)
                 showroom.balance -= suppliers[0].car.price
                 suppliers[0].supplier.balance += suppliers[0].car.price
