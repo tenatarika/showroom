@@ -23,4 +23,4 @@ class SupplierAdmin(admin.ModelAdmin):
 
 @admin.register(SupplierCar)
 class CarsOfSupplierAdmin(admin.ModelAdmin):
-    list_display = ('count', 'discount', 'date', 'car', 'supplier')
+    list_display = ('count', 'discount',  'car', 'supplier')

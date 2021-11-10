@@ -1,8 +1,8 @@
+from src.tools.abstract_models import CreatedAt, UpdatedAt, SoftDelete
 from src.tools.fields import DecimalRangeField
 from django.db import models
 from src.supplier.models import Car
 from django.core.validators import MaxValueValidator, MinValueValidator
-from src.tools.fields import CreatedAt, UpdatedAt, SoftDelete
 
 
 def jsonfield_default_value():  # This is a callable
@@ -31,10 +31,9 @@ class CarsOfShowroom(CreatedAt, UpdatedAt, SoftDelete):
     discount = models.IntegerField(
                           validators=[MinValueValidator(1),
                                       MaxValueValidator(100)])
-    date = models.DateTimeField(auto_now=True)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
                             related_name='cars_of_showroom', related_query_name='car_of_showroom',
                             null=True)
-    сar_showroom = models.ForeignKey(CarShowroom, on_delete=models.SET_NULL,
+    сar_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE,
                                      related_name='showrooms', related_query_name='showroom',
                                      null=True, blank=True)

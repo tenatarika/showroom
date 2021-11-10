@@ -1,8 +1,8 @@
 from django.core.validators import RegexValidator, MaxValueValidator, MinValueValidator
 from django.db import models
 
-from src.core.car_showroom.colors import Color
-from src.tools.fields import CreatedAt, UpdatedAt, SoftDelete
+from src.core.enums.supplier import Color
+from src.tools.abstract_models import CreatedAt, UpdatedAt, SoftDelete
 from src.tools.fields import DecimalRangeField
 
 
@@ -20,7 +20,7 @@ class Car(CreatedAt, UpdatedAt, SoftDelete):
     )
     year = models.PositiveIntegerField(blank=True, default='1900',
                                        validators=(MaxValueValidator(2021),))
-    color = models.CharField(max_length=200, default='white', blank=True, choices=Color.choices())
+    color = models.CharField(max_length=7, default='white', blank=True, choices=Color.choices())
 
     vin = models.CharField(
         max_length=17,
@@ -61,10 +61,9 @@ class SupplierCar(CreatedAt, UpdatedAt, SoftDelete):
         min_value=1,
         max_value=100,
     )
-    date = models.DateTimeField(auto_now=True)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
                             related_name='suppliers', related_query_name='supplier',
                             null=True)
-    supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL,
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,
                                  related_name='supplier_cars', related_query_name='supplier_car',
                                  null=True)
