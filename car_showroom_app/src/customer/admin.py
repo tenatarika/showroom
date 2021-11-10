@@ -5,7 +5,7 @@ from django.db.models import Avg
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ('country', 'city', 'street', 'houseNum',)
+    list_display = ('country', 'city', 'street', 'house_num',)
 
 
 @admin.register(Customer)
@@ -16,14 +16,13 @@ class CustomerAdmin(admin.ModelAdmin):
     def show_average(self, obj):
         result = Purchase.objects.filter(
             supplier=obj).aggregate(Avg("discount"))
-        try:
-            return result["discount__avg"]
-        except AttributeError:
-            return None
+
+        return result.get("discount__avg")
+
 
     show_average.short_description = "Average discount"
 
 
 @admin.register(Purchase)
 class CustomerPurchaseAdmin(admin.ModelAdmin):
-    list_display = ('car', 'supplier', 'car_showroom', 'discount')
+    list_display = ('car',  'car_showroom', 'discount')
