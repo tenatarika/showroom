@@ -10,7 +10,7 @@ class GetCustomerSerializer(serializers.ModelSerializer):
         fields = (
             "name",
             "birthday",
-            "country",
+            "location",
             "phone",
         )
 
@@ -24,8 +24,7 @@ class GetPrivateCustomerSerializer(serializers.ModelSerializer):
             "balance",
             "phone",
             "sample",
-            "country",
-            "is_active",
+            "location",
         )
 
 
@@ -35,7 +34,6 @@ class GetPurchaseSerializer(serializers.ModelSerializer):
         model = Purchase
         fields = (
             'car',
-            'supplier',
             'car_showroom',
             'discount',
         )
