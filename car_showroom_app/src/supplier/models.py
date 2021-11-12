@@ -67,3 +67,21 @@ class SupplierCar(CreatedAt, UpdatedAt, SoftDelete):
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,
                                  related_name='supplier_cars', related_query_name='supplier_car',
                                  null=True)
+
+
+class SupplierSale(CreatedAt, UpdatedAt, SoftDelete):
+    """Supplier sale"""
+    car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
+                            related_name='cars_sale', related_query_name='car_sale',
+                            null=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,
+                                 related_name='supplier_sale', related_query_name='supplier_sale',
+                                 null=True)
+    discount = DecimalRangeField(
+        max_digits=10,
+        decimal_places=2,
+        default=1,
+        min_value=1,
+        max_value=100,
+    )
+    end_date = models.DateField(blank=True)
