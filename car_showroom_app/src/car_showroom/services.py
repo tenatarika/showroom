@@ -1,12 +1,12 @@
-from django.db.models import Q
+from django.db.models import Q, F
 
 from src.car_showroom.models import CarShowroom, CarsOfShowroom
-from src.supplier.models import SupplierCar
+from src.supplier.models import SupplierCar, SupplierSale
 from config.celery import app
 
 
 @app.task
-def buy_cars() -> bool:
+def buy_cars():
     """Function for buying cars"""
     for showroom in CarShowroom.objects.all():
         sample = showroom.sortquery
@@ -16,22 +16,35 @@ def buy_cars() -> bool:
                             Q(car__width__gte=sample[2].get('width')) &
                             Q(car__price__lte=sample[3].get('price')))
 
-        suppliers = SupplierCar.objects.filter(find_suppliers_q)
-        for supplier_purchase in suppliers:
-            if showroom.balance >= supplier_purchase.car.price:
-                showroom.balance -= supplier_purchase.car.price
-                supplier_purchase.supplier.balance += supplier_purchase.car.price
+        suppliers_discounts = SupplierCar.objects.filter(find_suppliers_q).order_by('-discount').first()
+        sale_discount = SupplierSale.objects.filter(find_suppliers_q).order_by('-discount').first()
 
-                purchase = CarsOfShowroom.objects.filter(car=supplier_purchase.car, сar_showroom=showroom)[0]
+        if sale_discount is None:
+            supplier_purchase = suppliers_discounts
+        elif suppliers_discounts is None:
+            supplier_purchase = sale_discount
+        elif suppliers_discounts.discount > sale_discount.discount:
+            supplier_purchase = suppliers_discounts
+        else:
+            supplier_purchase = sale_discount
 
-                if purchase is not None:
-                    purchase.count += 1
-                    purchase.save()
-                    showroom.save()
-                    supplier_purchase.supplier.save()
-                else:
-                    pur = CarsOfShowroom.objects.create(discount=1, car=supplier_purchase.car, сar_showroom=showroom)
-                    pur.save()
-                    showroom.save()
-                    supplier_purchase.supplier.save()
-                return True
+        if showroom.balance >= supplier_purchase.car.price:
+            showroom.balance -= supplier_purchase.car.price
+            supplier_purchase.supplier.balance += supplier_purchase.car.price
+
+            purchase = CarsOfShowroom.objects.filter(car=supplier_purchase.car, сar_showroom=showroom,
+                                                     supplier=supplier_purchase.supplier).first()
+
+            if purchase is not None:
+                CarsOfShowroom.objects.filter(car=supplier_purchase.car, сar_showroom=showroom,
+                                              supplier=supplier_purchase.supplier).update(count=F('count') + 1)
+
+                showroom.save()
+                supplier_purchase.supplier.save()
+            else:
+                pur = CarsOfShowroom.objects.create(discount=supplier_purchase.discount, car=supplier_purchase.car,
+                                                    сar_showroom=showroom, supplier=supplier_purchase.supplier)
+
+                pur.save()
+                showroom.save()
+                supplier_purchase.supplier.save()
