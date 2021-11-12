@@ -1,7 +1,7 @@
 from src.tools.abstract_models import CreatedAt, UpdatedAt, SoftDelete
 from src.tools.fields import DecimalRangeField
 from django.db import models
-from src.supplier.models import Car
+from src.supplier.models import Car, Supplier
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
@@ -37,3 +37,7 @@ class CarsOfShowroom(CreatedAt, UpdatedAt, SoftDelete):
     сar_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE,
                                      related_name='showrooms', related_query_name='showroom',
                                      null=True, blank=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,
+                                 related_name='suppliers', related_query_name='supplier',
+                                 null=True, blank=True)
+
