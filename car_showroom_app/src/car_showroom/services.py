@@ -19,7 +19,9 @@ def buy_cars():
         suppliers_discounts = SupplierCar.objects.filter(find_suppliers_q).order_by('-discount').first()
         sale_discount = SupplierSale.objects.filter(find_suppliers_q).order_by('-discount').first()
 
-        if sale_discount is None:
+        if suppliers_discounts is None and sale_discount is None:
+            continue
+        elif sale_discount is None:
             supplier_purchase = suppliers_discounts
         elif suppliers_discounts is None:
             supplier_purchase = sale_discount
