@@ -1,7 +1,12 @@
 from django.contrib import admin
 
 # Register your models here.
-from src.car_showroom.models import CarShowroom, CarsOfShowroom
+from src.car_showroom.models import CarShowroom, CarsOfShowroom, ShowroomSale
+
+
+@admin.register(ShowroomSale)
+class SaleShowroomAdmin(admin.ModelAdmin):
+    list_display = ('car', 'showroom', 'discount', 'added_date', 'end_date')
 
 
 @admin.register(CarShowroom)
@@ -11,4 +16,4 @@ class ShowroomAdmin(admin.ModelAdmin):
 
 @admin.register(CarsOfShowroom)
 class CarsOfShowroomAdmin(admin.ModelAdmin):
-    list_display = ('supplier', "count", "discount", "added_date", "car")
+    list_display = ('supplier', "count", "discount", "added_date", "date_updated", "car")

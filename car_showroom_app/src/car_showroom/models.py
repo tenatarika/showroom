@@ -41,3 +41,20 @@ class CarsOfShowroom(CreatedAt, UpdatedAt, SoftDelete):
                                  related_name='suppliers', related_query_name='supplier',
                                  null=True, blank=True)
 
+
+class ShowroomSale(CreatedAt, UpdatedAt, SoftDelete):
+    """Showroom sale"""
+    car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
+                            related_name='cars_showroom_sale', related_query_name='car_showroom_sale',
+                            null=True)
+    showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE,
+                                 related_name='sales_showroom', related_query_name='sale_showroom',
+                                 null=True)
+    discount = DecimalRangeField(
+        max_digits=10,
+        decimal_places=2,
+        default=1,
+        min_value=1,
+        max_value=100,
+    )
+    end_date = models.DateField(blank=True)
