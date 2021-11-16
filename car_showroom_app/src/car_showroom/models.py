@@ -27,14 +27,14 @@ class CarShowroom(CreatedAt, UpdatedAt, SoftDelete):
 
 class CarsOfShowroom(CreatedAt, UpdatedAt, SoftDelete):
     """buying a car from a provider"""
-    count = models.IntegerField(default=1)
+    count = models.PositiveIntegerField(default=1)
     discount = models.IntegerField(
                           validators=[MinValueValidator(1),
                                       MaxValueValidator(100)])
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
                             related_name='cars_of_showroom', related_query_name='car_of_showroom',
                             null=True)
-    сar_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE,
+    car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE,
                                      related_name='showrooms', related_query_name='showroom',
                                      null=True, blank=True)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,
