@@ -25,4 +25,4 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Purchase)
 class CustomerPurchaseAdmin(admin.ModelAdmin):
-    list_display = ('car',  'car_showroom', 'discount')
+    list_display = ('car', 'count', 'car_showroom', 'discount')
