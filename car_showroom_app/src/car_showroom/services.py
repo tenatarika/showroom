@@ -7,7 +7,7 @@ from config.celery import app
 
 @app.task
 def buy_cars():
-    """Function for buying cars"""
+    """Function for buying cars showrooms"""
     for showroom in CarShowroom.objects.all():
         sample = showroom.sortquery
 
@@ -34,18 +34,18 @@ def buy_cars():
             showroom.balance -= supplier_purchase.car.price
             supplier_purchase.supplier.balance += supplier_purchase.car.price
 
-            purchase = CarsOfShowroom.objects.filter(car=supplier_purchase.car, сar_showroom=showroom,
+            purchase = CarsOfShowroom.objects.filter(car=supplier_purchase.car, car_showroom=showroom,
                                                      supplier=supplier_purchase.supplier).first()
 
             if purchase is not None:
-                CarsOfShowroom.objects.filter(car=supplier_purchase.car, сar_showroom=showroom,
+                CarsOfShowroom.objects.filter(car=supplier_purchase.car, car_showroom=showroom,
                                               supplier=supplier_purchase.supplier).update(count=F('count') + 1)
 
                 showroom.save()
                 supplier_purchase.supplier.save()
             else:
                 pur = CarsOfShowroom.objects.create(discount=supplier_purchase.discount, car=supplier_purchase.car,
-                                                    сar_showroom=showroom, supplier=supplier_purchase.supplier)
+                                                    car_showroom=showroom, supplier=supplier_purchase.supplier)
 
                 pur.save()
                 showroom.save()
