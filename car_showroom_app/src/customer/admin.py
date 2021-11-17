@@ -15,7 +15,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
     def show_average(self, obj):
         result = Purchase.objects.filter(
-            supplier=obj).aggregate(Avg("discount"))
+            customer=obj).aggregate(Avg("discount"))
 
         return result.get("discount__avg")
 
@@ -25,4 +25,4 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Purchase)
 class CustomerPurchaseAdmin(admin.ModelAdmin):
-    list_display = ('car',  'car_showroom', 'discount')
+    list_display = ('car', 'count', 'car_showroom', 'discount')

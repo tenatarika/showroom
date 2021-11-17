@@ -48,6 +48,7 @@ class Customer(CreatedAt, UpdatedAt, SoftDelete):
 
 
 class Purchase(CreatedAt, UpdatedAt, SoftDelete):
+    count = models.PositiveIntegerField(default=1)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
                             related_name='cars', related_query_name='car',

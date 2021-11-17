@@ -13,9 +13,9 @@ class CustomerPublicView(ModelViewSet):
     serializer_class = GetCustomerSerializer
     permission_classes = (permissions.AllowAny,)
     filter_backends = (filters.DjangoFilterBackend, SearchFilter, OrderingFilter,)
-    filter_fields = ('name', 'gender', 'supplier', 'birthday',)
-    search_fields = ('sample', 'country', 'car', 'name', 'birthday',)
-    ordering_fields = ('sample', 'country', 'birthday', 'name',)
+    filter_fields = ('name', 'gender', 'birthday',)
+    search_fields = ('sample', 'location', 'car', 'name', 'birthday',)
+    ordering_fields = ('sample', 'location', 'birthday', 'name',)
 
 
 class CustomerPrivateView(ModelViewSet):
@@ -23,9 +23,9 @@ class CustomerPrivateView(ModelViewSet):
     serializer_class = GetPrivateCustomerSerializer
     permission_classes = (permissions.IsAuthenticated,)
     filter_backends = (filters.DjangoFilterBackend, SearchFilter, OrderingFilter,)
-    filter_fields = ('name', 'gender', 'supplier', 'birthday', 'phone',)
-    search_fields = ('sample', 'country', 'car', 'name', 'birthday', 'phone',)
-    ordering_fields = ('sample', 'country', 'birthday', 'name', 'phone',)
+    filter_fields = ('name', 'gender',  'birthday', 'phone',)
+    search_fields = ('sample', 'location', 'car', 'name', 'birthday', 'phone',)
+    ordering_fields = ('sample', 'location', 'birthday', 'name', 'phone',)
 
 
 class PurchaseView(ModelViewSet):
@@ -33,6 +33,6 @@ class PurchaseView(ModelViewSet):
     serializer_class = GetPurchaseSerializer
     permission_classes = (permissions.IsAuthenticated,)
     filter_backends = (filters.DjangoFilterBackend, SearchFilter, OrderingFilter,)
-    filter_fields = ('car', 'supplier', 'car_showroom', 'discount',)
-    search_fields = ('car', 'supplier', 'car_showroom', 'discount',)
-    ordering_fields = ('car', 'supplier', 'car_showroom', 'discount',)
+    filter_fields = ('car', 'car_showroom', 'discount',)
+    search_fields = ('car', 'car_showroom', 'discount',)
+    ordering_fields = ('car', 'car_showroom', 'discount',)

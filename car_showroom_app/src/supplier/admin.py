@@ -1,6 +1,11 @@
 
 from django.contrib import admin
-from src.supplier.models import Car, Supplier, SupplierCar
+from src.supplier.models import Car, Supplier, SupplierCar, SupplierSale
+
+
+@admin.register(SupplierSale)
+class SaleSupplierAdmin(admin.ModelAdmin):
+    list_display = ('car', 'supplier', 'discount', 'added_date', 'end_date')
 
 
 @admin.register(Car)

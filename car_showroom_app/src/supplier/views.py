@@ -15,9 +15,9 @@ class SupplierPurchasesView(ModelViewSet):
     serializer_class = SupplierPurchasesSerializer
     permission_classes = (permissions.IsAuthenticated,)
     filter_backends = (filters.DjangoFilterBackend, SearchFilter, OrderingFilter,)
-    filter_fields = ('date', 'car', 'supplier', 'discount',)
-    search_fields = ('count', 'discount', 'car', 'supplier', 'date',)
-    ordering_fields = ('car', 'supplier', 'date', 'count', 'discount')
+    filter_fields = ('car', 'supplier', 'discount',)
+    search_fields = ('count', 'discount', 'car', 'supplier',)
+    ordering_fields = ('car', 'supplier',  'count', 'discount')
 
 
 class SupplierPublicView(ReadOnlyModelViewSet):

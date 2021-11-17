@@ -7,11 +7,11 @@ class GetPublicShowroom(serializers.ModelSerializer):
 
     class Meta:
         model = CarShowroom
-        fields = ('name', 'description', 'country',)
+        fields = ('name', 'description', 'location',)
 
 
 class GetCarsOfShowroom(serializers.ModelSerializer):
 
     class Meta:
         model = CarsOfShowroom
-        fields = ('count', 'discount', 'date', 'car',)
+        fields = ('count', 'discount', 'car',)
