@@ -47,7 +47,7 @@ class ShowroomSale(CreatedAt, UpdatedAt, SoftDelete):
     car = models.ForeignKey(Car, to_field='vin', on_delete=models.SET_NULL,
                             related_name='cars_showroom_sale', related_query_name='car_showroom_sale',
                             null=True)
-    showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE,
+    car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE,
                                  related_name='sales_showroom', related_query_name='sale_showroom',
                                  null=True)
     discount = DecimalRangeField(

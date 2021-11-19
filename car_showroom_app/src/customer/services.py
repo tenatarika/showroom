@@ -1,10 +1,12 @@
 from django.db.models import Q, F
 from src.car_showroom.models import CarsOfShowroom, ShowroomSale
 from src.customer.models import Customer, Purchase
+from config.celery import app
 
 
+@app.task
 def customer_buy_car():
-    """Functions for buy cars"""
+    """Functions for buy cars customers"""
     for customer in Customer.objects.all():
         sample = customer.sample
 
@@ -26,8 +28,6 @@ def customer_buy_car():
             customer_purchase = showroom_discounts
         else:
             customer_purchase = sale_discount
-
-        customer_purchase = showroom_discounts
 
         if customer.balance >= customer_purchase.car.price:
             customer.balance -= customer_purchase.car.price
