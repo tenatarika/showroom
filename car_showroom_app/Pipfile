@@ -19,6 +19,7 @@ django-filter = "*"
 celery = {extras = ["redis"], version = "*"}
 flake8 = "*"
 flower = "*"
+gunicorn = "*"
 
 [dev-packages]
 
